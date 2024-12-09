@@ -1,37 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_size.c                                     :+:      :+:    :+:   */
+/*   print_hex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 11:32:38 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/09 14:38:40 by icunha-t         ###   ########.fr       */
+/*   Created: 2024/12/09 17:05:43 by icunha-t          #+#    #+#             */
+/*   Updated: 2024/12/09 17:13:55 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#include <unistd.h>
 
-int	ft_list_size(t_list *begin_list)
+int	ft_atoi(char *str)
 {
-	int	count = 0;
-	
-	if (begin_list == 0)
-		return (0);
-	while (begin_list->next)
+	int	i = 0;
+	int r = 0;
+
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		count++;
-		begin_list = begin_list->next;
+		r = r * 10 + (str[i] - 48);
+		i++;
 	}
-	return (count);
+	return (r);
 }
 
-/*
-#include <stdio.h>
-int	main (void)
+void ft_printhex(int nb)
 {
-	t_list *begin_list = NULL;
-	printf ("%d", ft_list_size(begin_list));
+	char	*hex = "0123456789abcdef";
+	
+	if (nb >= 16)
+		ft_printhex(nb / 16);
+	write (1, &hex[nb % 16], 1);
+}
+
+int	 main(int ac, char **av)
+{
+	int	nb = ft_atoi(av[1]);
+	
+	if (ac == 2)
+		ft_printhex(nb);
+	write (1, "\n", 1);
 	return (0);
 }
-*/

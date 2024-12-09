@@ -1,17 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list.h                                          :+:      :+:    :+:   */
+/*   hidenp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 11:32:44 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/09 14:34:22 by icunha-t         ###   ########.fr       */
+/*   Created: 2024/12/09 15:51:57 by icunha-t          #+#    #+#             */
+/*   Updated: 2024/12/09 16:11:31 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct    s_list
+#include <unistd.h>
+
+int	main (int ac, char **av)
 {
-    struct s_list *next;
-    void          *data;
-}                 t_list;
+	int i = 0;
+	int	j = 0;
+	
+	if (ac == 3)
+	{
+		if (!av[1])
+			return (1);
+		while (av[1][i])
+		{
+			while (av[2][j])
+			{
+				if (av[1][i] == av[2][j])
+					break;
+				j++;
+			}
+			if (av[2][j] == '\0')
+				break;
+			i++;
+		}
+		if (av[1][i] == '\0')
+			write (1, "1", 1);
+		else
+			write (1, "0", 1);
+	}
+	write (1, "\n", 1);
+	return (0);
+}

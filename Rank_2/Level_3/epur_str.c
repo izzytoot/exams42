@@ -1,37 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_size.c                                     :+:      :+:    :+:   */
+/*   epur_str.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 11:32:38 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/09 14:38:40 by icunha-t         ###   ########.fr       */
+/*   Created: 2024/12/09 13:10:58 by icunha-t          #+#    #+#             */
+/*   Updated: 2024/12/09 13:47:29 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#include <unistd.h>
 
-int	ft_list_size(t_list *begin_list)
+int	is_space(char c)
 {
-	int	count = 0;
-	
-	if (begin_list == 0)
-		return (0);
-	while (begin_list->next)
-	{
-		count++;
-		begin_list = begin_list->next;
-	}
-	return (count);
+	if (c == ' ' || c == 9)
+		return (1);
+	return (0);	
 }
-
-/*
-#include <stdio.h>
-int	main (void)
+int	main (int ac, char **av)
 {
-	t_list *begin_list = NULL;
-	printf ("%d", ft_list_size(begin_list));
+	int i = 0;
+	int	space = 0;
+	
+	if (ac == 2)
+	{
+		while (is_space(av[1][i]))
+			i++;
+		while (av[1][i])
+		{
+			if ((is_space(av[1][i])))
+				space = 1;
+			if (!((is_space(av[1][i]))))
+			{
+				if (space)
+					write (1, " ", 1);
+				space = 0;
+				write (1, &av[1][i], 1);
+			}
+			i++;
+		}
+	}
+	write (1, "\n", 1);
 	return (0);
 }
-*/

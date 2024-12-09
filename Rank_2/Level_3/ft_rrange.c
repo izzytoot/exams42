@@ -1,63 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rrange.c                                        :+:      :+:    :+:   */
+/*   ft_rrange2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 14:41:56 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/04 14:41:58 by icunha-t         ###   ########.fr       */
+/*   Created: 2024/12/09 15:37:14 by icunha-t          #+#    #+#             */
+/*   Updated: 2024/12/09 15:50:56 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-int     *ft_rrange(int start, int end)
+int	*ft_rrange(int start, int end)
 {
-	int	*new_array;
+	int	*result;
 	int	size;
-	int	i = 0;
+	int i = 0;
 	
+	if (start >= end)
+		size = start - end + 1;
 	if (start <= end)
 		size = end - start + 1;
-	else
-		size = start - end + 1;
-	new_array = (int *)malloc(sizeof(int) * size);
-	if(!new_array)
+	result = malloc(sizeof(int) * size);
+	if (!result)
 		return (0);
-	if (start <= end)
+	if (end >= start)
 	{
-		while(end >= start)
+		while (i < size)
 		{
-			new_array[i] = end;
-			end--;
+			result[i] = end;
+			end --;
 			i++;
-		}
+		}	
 	}
 	else
 	{
-		while(end <= start)
+		while (i < size)
 		{
-			new_array[i] = end;
-			end++;
+			result[i] = end;
+			end ++;
 			i++;
-		}
+		}	
 	}
-	return(new_array);
+	return (result);
 }
-/*
-int main(void)
+
+int	main(void)
 {
-	int	i = 0;
 	int	start = 0;
 	int	end = -3;
-	int size;
 	int	*result = ft_rrange(start, end);
-	
+	int size;
+	int i = 0;
+
 	if (start <= end)
 		size = end - start + 1;
-	if (start > end)
+	else
 		size = start - end + 1;
 	while (i < size)
 	{
@@ -67,4 +67,3 @@ int main(void)
 	free(result);
 	return (0);
 }
-*/
