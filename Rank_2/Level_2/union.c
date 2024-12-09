@@ -6,11 +6,12 @@
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:23:56 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/03 18:46:41 by icunha-t         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:43:45 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
 char	*ft_strcat(char *s1, char *s2)
 {
@@ -32,7 +33,7 @@ int	check_repeat(char *str, int index, char c)
 {
 	int	i = 0;
 	
-	while (str[i] < index)
+	while (i < index)
 	{
 		if (str[i] == c)
 			return (0);
@@ -40,6 +41,8 @@ int	check_repeat(char *str, int index, char c)
 	}
 	return (1);
 }
+
+
 int	main(int ac, char **av)
 {
 	char *new_str;
@@ -50,7 +53,7 @@ int	main(int ac, char **av)
 		new_str = ft_strcat(av[1], av[2]);
 		while (new_str[i])
 		{
-			if (check_repeat(new_str, i, new_str[i] == 1))
+			if (check_repeat(new_str, i, new_str[i]))
 				write (1, &new_str[i], 1);
 			i++;
 		}
