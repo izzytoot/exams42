@@ -1,44 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
+/*   ft_list_remove_if.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 14:26:02 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/10 13:43:29 by icunha-t         ###   ########.fr       */
+/*   Created: 2024/12/10 13:13:31 by icunha-t          #+#    #+#             */
+/*   Updated: 2024/12/10 13:25:53 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "ft_list.h"
 
-char	*ft_strpbrk(const char *s1, const char *s2)
-{
-	int	i = 0;
-	int	j;
+void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
+{	
+	if (begin_list == NULL || *begin_list == NULL)
+		return;
+	t_list *current = *begin_list;
 	
-	while (s1[i])
+	if(cmp(current->data, data_ref) == 0)
 	{
-		j = 0;
-		while (s2[j])
-		{
-			if (s1[i] == s2[j])
-				return ((char *)&s1[i]);
-			j++;
-		}
-		i++;
+		*begin_list = current->next;
+		free(current);
+		ft_list_remove_if(begin_list, data_ref, cmp);
 	}
-	return (NULL);
+	else
+	{
+		current = *begin_list;
+		ft_list_remove_if(&current->next, data_ref, cmp);
+	}
 }
-/*
-int	main(void)
-{
-	char	*s1 = "Hfellelofsfdsf";
-	char	*s2 = "sf";
 	
-	printf("%s\n", ft_strpbrk(s1, s2));
-	printf("%s\n", strpbrk(s1, s2));
-	return(0);
-}
-*/

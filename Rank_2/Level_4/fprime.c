@@ -1,44 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
+/*   fprime.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 14:26:02 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/10 13:43:29 by icunha-t         ###   ########.fr       */
+/*   Created: 2024/12/10 11:11:15 by icunha-t          #+#    #+#             */
+/*   Updated: 2024/12/10 12:23:13 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-char	*ft_strpbrk(const char *s1, const char *s2)
+int	main(int ac, char **av)
 {
-	int	i = 0;
-	int	j;
+	int	n;
+	int nb;
 	
-	while (s1[i])
+	if (ac == 2)
 	{
-		j = 0;
-		while (s2[j])
+		nb = atoi(av[1]);
+		if (nb == 1)
+			printf("1");
+		n = 2;
+		while (n <= nb)
 		{
-			if (s1[i] == s2[j])
-				return ((char *)&s1[i]);
-			j++;
+			if (nb % n == 0)
+			{
+				printf("%d", n);
+				if (n == nb)
+					break;
+				printf("*");
+				nb = nb / n;
+				n = 2;
+			}
+			n++;
 		}
-		i++;
 	}
-	return (NULL);
+	printf("\n");
+	return (0);
 }
-/*
-int	main(void)
-{
-	char	*s1 = "Hfellelofsfdsf";
-	char	*s2 = "sf";
-	
-	printf("%s\n", ft_strpbrk(s1, s2));
-	printf("%s\n", strpbrk(s1, s2));
-	return(0);
-}
-*/

@@ -1,44 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
+/*   ft_list_foreach.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 14:26:02 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/10 13:43:29 by icunha-t         ###   ########.fr       */
+/*   Created: 2024/12/10 13:08:34 by icunha-t          #+#    #+#             */
+/*   Updated: 2024/12/10 13:14:42 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "ft_list.h"
 
-char	*ft_strpbrk(const char *s1, const char *s2)
+void    ft_list_foreach(t_list *begin_list, void (*f)(void *))
 {
-	int	i = 0;
-	int	j;
-	
-	while (s1[i])
+	while (begin_list)
 	{
-		j = 0;
-		while (s2[j])
-		{
-			if (s1[i] == s2[j])
-				return ((char *)&s1[i]);
-			j++;
-		}
-		i++;
+		(*f)(begin_list->data);
+		begin_list = begin_list->next;
 	}
-	return (NULL);
 }
-/*
-int	main(void)
-{
-	char	*s1 = "Hfellelofsfdsf";
-	char	*s2 = "sf";
-	
-	printf("%s\n", ft_strpbrk(s1, s2));
-	printf("%s\n", strpbrk(s1, s2));
-	return(0);
-}
-*/

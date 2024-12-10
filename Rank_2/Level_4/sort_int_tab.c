@@ -1,44 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
+/*   sort_int_tab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 14:26:02 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/10 13:43:29 by icunha-t         ###   ########.fr       */
+/*   Created: 2024/12/10 14:14:52 by icunha-t          #+#    #+#             */
+/*   Updated: 2024/12/10 14:39:58 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-
-char	*ft_strpbrk(const char *s1, const char *s2)
+void	ft_swap(int *a, int *b)
 {
-	int	i = 0;
-	int	j;
-	
-	while (s1[i])
+	int	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+void sort_int_tab(int *tab, unsigned int size)
+{
+	unsigned int	i = 0;
+	while(i < (size - 1))
 	{
-		j = 0;
-		while (s2[j])
+		if (tab[i] > tab[i + 1])
 		{
-			if (s1[i] == s2[j])
-				return ((char *)&s1[i]);
-			j++;
+			ft_swap(&tab[i], &tab[i + 1]);
+			i = 0;
 		}
-		i++;
+		else
+			i++;
 	}
-	return (NULL);
 }
 /*
+#include <stdio.h>
+
 int	main(void)
 {
-	char	*s1 = "Hfellelofsfdsf";
-	char	*s2 = "sf";
+	int	arr[10] = {1, 7, 2, 15, 5};
+	unsigned int	i = 0;
+	unsigned int	size = 5;
 	
-	printf("%s\n", ft_strpbrk(s1, s2));
-	printf("%s\n", strpbrk(s1, s2));
-	return(0);
+	sort_int_tab(arr, size);
+	while (i < size)
+	{
+		printf("%d ", arr[i]);
+		i++;
+	}
+	return (0);
 }
 */

@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 11:53:30 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/04 12:12:45 by icunha-t         ###   ########.fr       */
+/*   Created: 2024/12/10 10:39:33 by icunha-t          #+#    #+#             */
+/*   Updated: 2024/12/10 11:08:09 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 int	len_digits(int nbr)
 {
@@ -20,8 +19,8 @@ int	len_digits(int nbr)
 	if (nbr == 0)
 		return (1);
 	if (nbr < 0)
-		len ++;
-	while (nbr)
+		len++;
+	while(nbr)
 	{
 		nbr = nbr / 10;
 		len++;
@@ -31,11 +30,10 @@ int	len_digits(int nbr)
 
 char	*ft_itoa(int nbr)
 {
+	int	dig = len_digits(nbr);
 	char *str;
-	int	len;
 	
-	len = len_digits(nbr);
-	str = malloc(sizeof(char) * (len + 1));
+	str = (char *)malloc(sizeof(char) * (dig + 1));
 	if (!str)
 		return (NULL);
 	if (nbr < 0)
@@ -45,18 +43,20 @@ char	*ft_itoa(int nbr)
 	}
 	if (nbr == 0)
 		str[0] = '0';
-	str[len] = '\0';
+	str[dig] = '\0';
 	while (nbr)
 	{
-		str[len - 1] = (nbr % 10) + '0';
+		str[dig - 1] = nbr % 10 + '0';
 		nbr = nbr / 10;
-		len--;
+		dig--;
 	}
 	return (str);
 }
 
-int	main(void)
+#include <stdio.h>
+
+int main(void)
 {
-	printf("%s\n", ft_itoa(-54));
-	return(0);
+	printf("%s\n", ft_itoa(-5486));
+	return (0);
 }

@@ -1,44 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
+/*   sort_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 14:26:02 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/10 13:43:29 by icunha-t         ###   ########.fr       */
+/*   Created: 2024/12/10 13:27:17 by icunha-t          #+#    #+#             */
+/*   Updated: 2024/12/10 13:36:38 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "ft_list.h"
 
-char	*ft_strpbrk(const char *s1, const char *s2)
+void	ft_swap(int *a, int *b)
 {
-	int	i = 0;
-	int	j;
+	int	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
+{
+	t_list *lst_start;
 	
-	while (s1[i])
+	if (!lst)
+		return (NULL);
+	lst_start = lst;
+	while(lst->next)
 	{
-		j = 0;
-		while (s2[j])
+		if ((*cmp)(lst->data, lst->next->data) == 0)
 		{
-			if (s1[i] == s2[j])
-				return ((char *)&s1[i]);
-			j++;
+			ft_swap(&lst->data, lst->next->data);
+			lst = lst_start;
 		}
-		i++;
+		else
+			lst = lst->next;
 	}
-	return (NULL);
+	return
 }
-/*
-int	main(void)
-{
-	char	*s1 = "Hfellelofsfdsf";
-	char	*s2 = "sf";
-	
-	printf("%s\n", ft_strpbrk(s1, s2));
-	printf("%s\n", strpbrk(s1, s2));
-	return(0);
-}
-*/
