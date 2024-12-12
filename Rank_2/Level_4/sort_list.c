@@ -30,11 +30,11 @@ t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
 	{
 		if ((*cmp)(lst->data, lst->next->data) == 0)
 		{
-			ft_swap(&lst->data, lst->next->data);
+			ft_swap(&lst->data, &lst->next->data);
 			lst = lst_start;
 		}
 		else
 			lst = lst->next;
 	}
-	return
+	return (lst_start);
 }
