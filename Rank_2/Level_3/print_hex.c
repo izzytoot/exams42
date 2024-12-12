@@ -6,7 +6,7 @@
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:05:43 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/09 17:13:55 by icunha-t         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:15:06 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ void ft_printhex(int nb)
 
 int	 main(int ac, char **av)
 {
-	int	nb = ft_atoi(av[1]);
+	int	nb;
 	
 	if (ac == 2)
+	{
+		nb = ft_atoi(av[1]);
 		ft_printhex(nb);
+	}
 	write (1, "\n", 1);
 	return (0);
 }

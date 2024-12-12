@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list.h                                          :+:      :+:    :+:   */
+/*   print_bits.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: icunha-t <icunha-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 13:08:44 by icunha-t          #+#    #+#             */
-/*   Updated: 2024/12/10 13:09:02 by icunha-t         ###   ########.fr       */
+/*   Created: 2024/12/12 11:41:21 by icunha-t          #+#    #+#             */
+/*   Updated: 2024/12/12 11:43:26 by icunha-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct    s_list
+void	print_bits(unsigned char octet)
 {
-    struct s_list *next;
-    void          *data;
-}                 t_list;
+	unsigned char bit;
+	int	i = 8;
+	
+	while(i--)
+	{
+		bit = (octet >> i & 1) + '0';
+		write (1, &bit, 1);
+	}
+}
