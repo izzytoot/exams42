@@ -28,6 +28,15 @@ int	len_digits(int nbr)
 	return (len);
 }
 
+int	sign(int nbr)
+{
+	if(nbr < 0)
+	{
+		return (-nbr);
+	}
+	return (nbr);
+}
+
 char	*ft_itoa(int nbr)
 {
 	int	dig = len_digits(nbr);
@@ -37,16 +46,13 @@ char	*ft_itoa(int nbr)
 	if (!str)
 		return (NULL);
 	if (nbr < 0)
-	{
 		str[0] = '-';
-		nbr = -nbr;
-	}
 	if (nbr == 0)
 		str[0] = '0';
 	str[dig] = '\0';
 	while (nbr)
 	{
-		str[dig - 1] = nbr % 10 + '0';
+		str[dig - 1] = sign(nbr % 10) + '0';
 		nbr = nbr / 10;
 		dig--;
 	}
