@@ -26,6 +26,7 @@ char *get_next_line(int fd)
 	static int buffer_size = 0;
 	static int buffer_index = 0;
 	char *line = NULL;
+	char c;
 	int	i = 0;
 
 	if(BUFFER_SIZE < 1 || fd < 0)
@@ -47,16 +48,18 @@ char *get_next_line(int fd)
 					free(line);
 					return (NULL);
 				}
+				return (line);
 			}
-			break;
 		}
-		line = join_char(line, buffer[buffer_index++], i);
+		c = buffer[buffer_index++];
+		line = join_char(line, c, i);
 		if(!line)
 			return (NULL);
-		if(line[i++] == '\n')
+		if(c == '\n')
 			break;
+		i++;
 	}
-	return line;
+	return (line);
 }
 
 #include <stdio.h>
