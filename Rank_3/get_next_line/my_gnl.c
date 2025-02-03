@@ -58,16 +58,20 @@ char *get_next_line(int fd)
 	}
 	return line;
 }
-
+#include <stdio.h>
 int	main(int ac, char **av)
 {
 	char *path = av[1];
 	int	fd = open(path, O_RDONLY);
 	char *str;
 
+	(void)ac;
 	if(fd < 0)
+	{
+		printf("Error\n");
 		return (0);
-	while(str = get_next_line(fd))
+	}
+	while((str = get_next_line(fd)))
 	{
 		printf("%s", str);
 		free(str);
