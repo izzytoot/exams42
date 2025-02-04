@@ -1,18 +1,9 @@
-#ifndef GET_NEXT_LINE_H
-#define GET_NEXT_LINE_H
-
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 10
 
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-
-#endif
 #endif
 
 #include <unistd.h>
-#include <fcntl.h>
 #include <stdlib.h>
 
 char	*join_char_to_line(char *str, char c, int len)
@@ -73,6 +64,7 @@ char	*get_next_line(int fd)
 }
 /*
 #include <stdio.h>
+#include <fcntl.h>
 int main(int ac, char **av)
 {
 	char *line;
