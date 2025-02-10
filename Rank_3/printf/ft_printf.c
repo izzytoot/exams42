@@ -46,7 +46,7 @@ int ft_printf(const char *mandatory, ... )
 	va_start(args, mandatory);
 	while(mandatory[i])
 	{
-		if (mandatory[i] == '%' && mandatory[i + 1] != '\0')
+		if(mandatory[i] == '%' && mandatory[i + 1] != '\0')
 		{
 			i++;
 			if (mandatory[i] == 's')
@@ -83,7 +83,11 @@ int	main(void)
 	origcount = printf("Hexadecimal for %d is %x\n", 42, -42);
 	ft_printf("mycount: %d\n", mycount);
 	printf("origcount: %d\n", origcount);
-
+	mycount = ft_printf("Hexadecimal for negative %d is %x\n", -42, -42);
+	origcount = printf("Hexadecimal for negative %d is %x\n", -42, -42);
+	ft_printf("mycount: %d\n", mycount);
+	printf("origcount: %d\n", origcount);
+	
 	return (0);
 }
 */
